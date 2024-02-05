@@ -57,10 +57,15 @@ class ClockApp(BoxLayout):
         self.label_date.text = value
 
 
+    def change_clock_color(self, color):
+        self.label_time.color = color
+
+
 class ClockAppMain(App):
     def build(self):
-        return ClockApp()
-
+        clock_app = ClockApp()
+        clock_app.change_clock_color((1, 0, 0, 1))  # Set the clock color to red (RGB: 1, 0, 0)
+        return clock_app
 def main():
     ClockAppMain().run()
     

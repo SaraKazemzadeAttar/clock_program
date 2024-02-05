@@ -27,3 +27,9 @@ def test_time_update(app):
     # Simulate time passing
     app.update_time(1)
     assert app.label_time.text != initial_time
+    
+def test_change_clock_color():
+    clock_app = ClockApp()
+    assert clock_app.label_time.color == (1, 1, 1, 1)
+    clock_app.change_clock_color((1, 0, 0, 1))
+    assert clock_app.label_time.color == (1, 0, 0, 1)
