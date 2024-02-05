@@ -3,7 +3,9 @@ from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.clock import Clock
+from kivy.core.audio import SoundLoader
 from datetime import datetime
+from plyer import notification
 
 
 class ClockApp(BoxLayout):
@@ -25,6 +27,7 @@ class ClockApp(BoxLayout):
         self.add_widget(self.button_format)
 
         Clock.schedule_interval(self.update_time, 1)
+
 
     def update_time(self, dt):
         self.current_time = datetime.now().strftime("%H:%M:%S")
@@ -55,11 +58,13 @@ class ClockApp(BoxLayout):
     def current_date(self, value):
         self._current_date = value
         self.label_date.text = value
-
+        
+    def play_tick_sound(self):
+        # Use plyer to play a notification sound
+        notification.notify(title='Clock Tick', message='', timeout=1)
 
     def change_clock_color(self, color):
         self.label_time.color = color
-
 
 class ClockAppMain(App):
     def build(self):
@@ -68,6 +73,7 @@ class ClockAppMain(App):
         return clock_app
 def main():
     ClockAppMain().run()
+ 
     
 if __name__ == "__main__":
     main()
