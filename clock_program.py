@@ -7,8 +7,8 @@ from datetime import datetime
 
 
 class ClockApp(BoxLayout):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self):
+        super().__init__()
         self.orientation = "vertical"
         self._current_time = datetime.now().strftime("%H:%M:%S")
         self._current_date = datetime.now().strftime("%Y-%m-%d")
@@ -33,9 +33,10 @@ class ClockApp(BoxLayout):
     def toggle_format(self, instance):
         self._is_24hr_format = not self._is_24hr_format
         if self._is_24hr_format:
-            self.label_time.text = datetime.now().strftime("%H:%M:%S")
+            self.label_time.text = datetime.now().strftime("%H:%M:%S")# Update label with 24-hour format
         else:
-            self.label_time.text = datetime.now().strftime("%I:%M:%S %p")
+            self.label_time.text = datetime.now().strftime("%I:%M:%S %p")# Update label with 12-hour format
+
 
     @property
     def current_time(self):
@@ -60,6 +61,8 @@ class ClockAppMain(App):
     def build(self):
         return ClockApp()
 
-
-if __name__ == "__main__":
+def main():
     ClockAppMain().run()
+    
+if __name__ == "__main__":
+    main()
