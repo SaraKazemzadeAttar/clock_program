@@ -33,3 +33,16 @@ def test_change_clock_color():
     assert clock_app.label_time.color == (1, 1, 1, 1)
     clock_app.change_clock_color((1, 0, 0, 1))
     assert clock_app.label_time.color == (1, 0, 0, 1)
+    
+def test_current_day(clock_app):
+    assert clock_app.current_day == datetime.now().strftime("%A")
+
+def test_toggle_format(clock_app):
+    initial_time = clock_app.current_time
+    clock_app.toggle_format(None)
+    assert clock_app.current_time != initial_time
+    
+def test_play_tick_sound(clock_app):
+    # Since play_tick_sound method uses an external library (plyer), 
+    # we can only test if the method executes without errors.
+    clock_app.play_tick_sound()
